@@ -9,8 +9,9 @@ import {environment} from './../../../environments/environment';
 export class ProductService {
     products: Product[] = [];
     url: string="";
-    constructor(private http: Http) {   
+    constructor(private http: Http) {
         this.url = environment.production ? '':'http://localhost:3000';
+        console.log(this.url);
     }
 
     getProducts() {
