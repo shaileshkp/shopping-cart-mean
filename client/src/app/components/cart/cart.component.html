@@ -1,0 +1,23 @@
+<div>
+  <div>
+    <h2>Carts</h2>
+  </div>
+  <div>
+    <app-edit-item
+      *ngIf="selectedCartItem;"
+      [selectedCartItem]="selectedCartItem"
+      (updatedQty) = "onUpdatedQty($event)"
+      ></app-edit-item>
+  </div>
+  <div>
+    <h4>Added products in cart</h4>
+    <app-cart-item
+    *ngFor="let product of cartItems"
+    [product]="product"></app-cart-item>
+  </div>
+  <div style="text-align:center;">
+    <h3> Total : {{total}} </h3>
+    <button mat-raised-button color="primary" class="order-now" (click)="onPlaceOrder()">Place My Order</button>
+  </div>
+</div>
+

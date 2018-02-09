@@ -1,0 +1,30 @@
+.edit-cart-item {
+    border: 1px solid blue;
+    margin-bottom: 20px;
+    height: 50px;
+}
+.basic-details {
+    display: inline;
+    float: left;
+}
+.edit-details {
+    margin-top: 12px;
+    margin-right: 8px;
+    display: inline;
+    float: right;
+}
+.submit-item {
+    font-size: 16px;
+    color: green;
+    height: 30px;
+    width: 70px;
+}
+#edit-qty {
+    font-size: 16px;
+    margin-left: 12px;
+    width: 50px;
+    text-align: center;
+}
+div > h3, h4 {
+    margin: 2px;
+}

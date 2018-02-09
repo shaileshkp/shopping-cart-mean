@@ -1,0 +1,17 @@
+<div 
+    [routerLink]="[index]"
+    style="cursor: pointer;">
+    <mat-list-item 
+    routerLinkActive="active"
+    class="product-list-item">
+        <div class="img">
+            <mat-icon mat-list-icon><img src="{{product.img}}" height="40px" width="40px"/></mat-icon>
+        </div>
+        <div mat-line class="details">
+            <h4>{{product.name}}</h4><br>
+            <span>Price :{{product.price}}</span>
+            <span>Available : {{product.qty}}</span>  
+        </div>
+    </mat-list-item>
+    <mat-divider ></mat-divider>
+</div>

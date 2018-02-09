@@ -1,0 +1,15 @@
+<div>
+  <div>
+    <div class="product-list">
+      <app-product-list></app-product-list>
+    </div>
+    <div class="product-details">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+  <div class="add-to-cart" *ngIf="selectedCartProduct">
+    <hr>
+    <app-add-to-cart></app-add-to-cart>
+  </div>
+</div>

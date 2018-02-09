@@ -1,0 +1,10 @@
+<div>
+    <mat-list>
+    <h2 mat-subheader>Products</h2>
+    <app-product-list-item 
+        *ngFor="let product of products; let i = index"
+        [product]="product"
+        [index]="i"
+    ></app-product-list-item>        
+    </mat-list>
+</div>

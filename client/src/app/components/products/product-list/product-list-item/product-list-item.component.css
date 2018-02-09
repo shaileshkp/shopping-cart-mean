@@ -1,0 +1,53 @@
+
+div, h4, h5 {
+    margin: 0px;
+    display: inline;
+}
+.img {
+    float: left;    
+}
+img{
+    border: 1px solid grey;
+}
+.details {
+    float: right;
+}
+.product-list-item:hover {
+    background:gray;
+}
+.active {
+    background-color: gray;
+}
+/* pro-name {
+    color: blue;
+}
+h5 {
+    display: inline;
+}
+.list-item-div {
+    border: 1px solid gray;
+    padding: 2px;
+    margin-bottom: 2px;
+}
+
+.list-item-div:hover {
+    background: rgb(192, 191, 191);
+}
+.img-div {
+    display: inline-block;
+    float: left;
+}
+.details-div{
+    display: inline-block;
+}
+.pro-name{
+    margin: 4px;
+}
+.qty {
+    margin: 4px;
+    float: right;
+}
+.price {
+    margin: 4px;    
+    float: left;
+} */

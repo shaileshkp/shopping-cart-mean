@@ -1,0 +1,20 @@
+<div>
+  <h2 mat-dialog-title>Select quantity to add in cart</h2>
+  <hr>
+  <mat-dialog-content>
+    <h3>Product Name : {{data.name}}</h3>
+    <h4>Price : {{product.price}} </h4>
+    <mat-form-field>
+      <input matInput placeholder="Quantity" type="number" [(ngModel)]="qtyInput" (change)="changeQty($event)"> 
+    </mat-form-field>
+    <h3 *ngIf="status">Invalid quantity.</h3>
+    <h2>Total : {{total}}</h2>
+  </mat-dialog-content>
+  <hr>
+  <mat-dialog-actions>
+    <div style="margin: 0 auto; text-align: center">
+      <button mat-raised-button color="primary" (click)="onOkClick()">OK</button>
+      <button mat-raised-button color="accent" (click)="onCancleClick()">Cancle</button>
+    </div>
+  </mat-dialog-actions>
+</div>

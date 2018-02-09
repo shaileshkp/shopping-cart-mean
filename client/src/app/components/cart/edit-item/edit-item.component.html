@@ -1,0 +1,10 @@
+<div class="edit-cart-item">
+  <div class="basic-details">
+      <h3>{{selectedCartItem.name}}</h3>
+      <h4>Price: {{selectedCartItem.amount}}</h4>
+  </div>
+  <div class="edit-details">
+    <input id="edit-qty" type="number" placeholder="Qty" [(ngModel)]="qty">
+    <input type="button" class="submit-item" value="OK" (click)="onChangeQty()">
+  </div>
+</div>

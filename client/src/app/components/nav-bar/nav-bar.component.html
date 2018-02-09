@@ -1,0 +1,23 @@
+<div>
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <h2 routerLink="/">Shopping Cart</h2>
+      <div class="menu">
+        <a mat-button routerLink="/products">Home</a>
+        <a mat-button routerLink="/cart">Cart</a>
+      </div>
+      <div class="search">
+        <input type="text" id="input-search" placeholder="Search">
+        <button *ngIf="!currentUser; else infoText" class="login" mat-raised-button color="primary" routerLink="/login">Login</button>
+        <ng-template #infoText>
+            <button mat-button [matMenuTriggerFor]="menu">{{ currentUser.email }}</button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item>Profile</button>
+              <button mat-menu-item (click)="logout()">Logout</button>
+            </mat-menu>
+        </ng-template>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>
+  

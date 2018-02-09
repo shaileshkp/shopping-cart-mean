@@ -1,0 +1,16 @@
+<mat-card class="list-item-div" (click)="onSelectCartItem()">
+  <div class="img-div">
+    <img src="{{product.img}}"
+      height="50px" width="50px"/>
+  </div>
+
+  <div class="details-div">
+    <h3 class="pro-name">{{product.name}}</h3>
+    <h5 class="price-list-item">Price : {{product.amount}}</h5>
+    <span class="qty-list-item">Qty : <h5>{{product.qty}}</h5></span>
+  </div>
+  <div class="total-amount-list-item">
+    <h4>{{product.amount * product.qty}}</h4>
+    <button mat-raised-button color="warn" (click)="onRemoveCartItem()">Remove</button>
+  </div>  
+</mat-card>

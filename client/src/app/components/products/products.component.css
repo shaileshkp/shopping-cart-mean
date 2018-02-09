@@ -1,0 +1,22 @@
+.dashboard {
+    display: inline;
+    overflow: hidden;
+}
+
+.product-list {
+    float:left;
+    width: 30%;
+    height: 600px;
+    overflow:auto;
+}
+
+.product-details {
+    width: 70%;
+    float:right;
+    height: 600px;    
+    overflow:auto;    
+}
+.add-to-cart {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}

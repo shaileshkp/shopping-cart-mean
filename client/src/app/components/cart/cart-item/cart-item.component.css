@@ -1,0 +1,61 @@
+pro-name {
+    color: blue;
+}
+
+
+h5 {
+    display: inline;
+}
+.cart-item-remove {
+    display: inline-block;
+    background: red;
+    color: white;
+    font-size: 16px;
+    font-family: sans-serif;
+    border: 2px solid;
+    border-radius: 4px;
+}
+
+.cart-item-remove:hover {
+    display: inline-block;
+    background: rgb(233, 87, 87);
+    color: white;
+    font-size: 18px;
+    font-family: sans-serif;
+    border: 2px solid;
+    border-radius: 4px;
+}
+
+.list-item-div {
+    padding: 8px;
+    margin-bottom: 8px;
+}
+
+.list-item-div:hover {
+    background: rgb(192, 191, 191);
+}
+.img-div {
+    display: inline-block;
+    float: left;
+}
+.details-div{
+    display: inline-block;
+}
+.pro-name{
+    margin: 4px;
+}
+.price-list-item {
+    font-size: 14px;
+}
+
+.total-amount-list-item {
+    display: inline-block;
+    float:right;
+    margin-right: 10px;
+}
+
+.total-amount-list-item > h4 {
+    margin-top: 10px;
+    font-size: 18px;
+    display: inline-block;
+}
