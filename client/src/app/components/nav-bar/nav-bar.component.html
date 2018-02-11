@@ -7,7 +7,7 @@
         <a mat-button routerLink="/cart">Cart</a>
       </div>
       <div class="search">
-        <input type="text" id="input-search" placeholder="Search">
+        <button mat-menu-item (click)="askForNotification()">Enable Notification</button>
         <button *ngIf="!currentUser; else infoText" class="login" mat-raised-button color="primary" routerLink="/login">Login</button>
         <ng-template #infoText>
             <button mat-button [matMenuTriggerFor]="menu">{{ currentUser.email }}</button>

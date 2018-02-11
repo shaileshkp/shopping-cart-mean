@@ -15,25 +15,7 @@ export class AppComponent implements OnInit{
   ngOnInit() {
     this.loginService.onLoad();
   }
-  displayConformNotification() {
-    
-  }
   onNavigate(tabName: string) {
     this.selectedTab = tabName;
-  }
-
-  showNotification() {
-    Notification.requestPermission(function (result) {
-      console.log('user choice', result);
-      if(result !== 'granted') {
-        console.log('No notificaiton purmission');
-      } else {
-        var options = {
-          body: "New Notificaiton.",
-          icon: "favicon.ico"
-        };
-        new Notification("Notificaiton",options);
-      }
-    })
   }
 }
