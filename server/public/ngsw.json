@@ -9,8 +9,8 @@
       "urls": [
         "/favicon.ico",
         "/index.html",
-        "/inline.db815ee8cea9b217d615.bundle.js",
-        "/main.c0bb800c6e4ca9a50893.bundle.js",
+        "/inline.741af6fa3b33eb03a875.bundle.js",
+        "/main.46dda3c10f041a73fe27.bundle.js",
         "/polyfills.f20484b2fa4642e0dca8.bundle.js",
         "/styles.fd1762e9ee6dd8175a50.bundle.css"
       ],
@@ -20,17 +20,34 @@
       "name": "assets",
       "installMode": "lazy",
       "updateMode": "prefetch",
-      "urls": [],
+      "urls": [
+        "/assets/manifest.json",
+        "/assets/icons/app-icon-144x144.png",
+        "/assets/icons/app-icon-192x192.png",
+        "/assets/icons/app-icon-256x256.png",
+        "/assets/icons/app-icon-384x384.png",
+        "/assets/icons/app-icon-48x48.png",
+        "/assets/icons/app-icon-512x512.png",
+        "/assets/icons/app-icon-96x96.png"
+      ],
       "patterns": []
     }
   ],
   "dataGroups": [],
   "hashTable": {
-    "/inline.db815ee8cea9b217d615.bundle.js": "d733cf09652ed64371325f18b70ddcd8d9badd9d",
-    "/main.c0bb800c6e4ca9a50893.bundle.js": "095aaa607ca3799d3902370f522c5325cac26712",
+    "/inline.741af6fa3b33eb03a875.bundle.js": "f4ce9d5ff003c862ac256fa0d6ced6ded75f94bf",
+    "/assets/manifest.json": "7040ea5bd047e005a442fd3f663cfbcd848d12cd",
+    "/main.46dda3c10f041a73fe27.bundle.js": "e0b6eb8a3089832835c082229476be1062097226",
+    "/assets/icons/app-icon-144x144.png": "58942aa6b75a8aed50dd4c79eca3d902c129040d",
     "/polyfills.f20484b2fa4642e0dca8.bundle.js": "1973e2201185e6b94ecc056c0d12c75955a96283",
+    "/assets/icons/app-icon-192x192.png": "1d9871836397290a901548c659c2683dccbb770e",
     "/styles.fd1762e9ee6dd8175a50.bundle.css": "7d6cecf855af9b161a4d8a960613f30a74ca723d",
+    "/assets/icons/app-icon-256x256.png": "822aecb6a16d10cf19b8bc04198bece9e2ed27f2",
     "/favicon.ico": "84161b857f5c547e3699ddfbffc6d8d737542e01",
-    "/index.html": "b00185325be7c5043f705fc31ce8e99f2c302b8c"
+    "/assets/icons/app-icon-384x384.png": "82a2ee26bb8626bc4d288b3b992456a222d065b5",
+    "/index.html": "e414d53497b974ff57db3b52be07c6aad6c90f09",
+    "/assets/icons/app-icon-48x48.png": "1b51a46a3f5e8d6a1a4f5128edfe33103c71d851",
+    "/assets/icons/app-icon-512x512.png": "572bb969303579c0a7a68887202d998f7d1b8353",
+    "/assets/icons/app-icon-96x96.png": "67a55020b5ee7373ef2ed2500795ebff099efafb"
   }
 }
