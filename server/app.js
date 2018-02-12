@@ -10,6 +10,7 @@ const LocalStrategy = require('passport-local').Strategy;
 
 const keys = require('./api/config/keys');
 const productRoutes = require('./api/routes/products');
+const notificationRoutes = require('./api/routes/notification');
 const userRoutes = require('./api/routes/users');
 const authRoutes = require('./api/routes/auth');
 
@@ -53,6 +54,7 @@ app.use(passport.session());
 //Routes
 app.use('/api/products', productRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/notification', notificationRoutes);
 app.use('/api/auth', authRoutes);
 
 app.use((req, res, next) => {

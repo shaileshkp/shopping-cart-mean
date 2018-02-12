@@ -26,7 +26,6 @@ router.post('/register', (req, res) => {
             } else {
                 bcrypt.hash(password, 10).then(function(hash) {
                     password = hash;
-
                     MongoClient.connect(url, (err, db) => {
                         db.collection('Users').insertOne({
                             _id, fullName, email, password, phno

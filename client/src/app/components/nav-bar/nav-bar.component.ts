@@ -2,6 +2,8 @@ import { Component, Input, OnInit} from '@angular/core';
 import { User } from '../login/user.model';
 import { LoginService } from '../login/login.service';
 import { browser } from 'protractor';
+import { NotificationService } from '../../notification.service';
+import { Http } from '@angular/http';
 
 @Component({
   selector: 'app-nav-bar',
@@ -11,7 +13,7 @@ import { browser } from 'protractor';
 export class NavBarComponent implements OnInit {
   currentUser: User;
 
-  constructor(private loginService: LoginService) { 
+  constructor(private loginService: LoginService, public notificationService: NotificationService) { 
     this.loginService.currentUser
       .subscribe((user: User) => {
         this.currentUser = user;
@@ -33,35 +35,67 @@ export class NavBarComponent implements OnInit {
       if(result !== 'granted') {
         console.log('No notificaiton purmission');
       } else {
-        if('serviceWorker' in navigator) {
-          var options = {
-            body: 'This is notificaiton of cart from service worker',
-            icon:'/assets/icons/app-icon-96x96.png',
-            image: 'favicon.ico',
-            lang: 'en-US',
-            vibrate: [100, 50, 200],
-            tag: 'conform-notification',
-            renotify: true,
-            actions: [
-              {
-                action: 'conform',
-                title: 'Okay',
-                icon: '/assets/icons/app-icon-96x96.png'
-              },
-              {
-                action: 'cancle',
-                title: 'Cancle',
-                icon: '/assets/icons/app-icon-96x96.png'
-              }
-            ]
-          };
-          navigator.serviceWorker.ready
-          .then(function(swreg) {
-            swreg.showNotification('Shopping Cart', options);
-          });
+        if(!('serviceWorker' in navigator)) {
+          return;
         }
+
+        var reg;
+        navigator.serviceWorker.ready
+          .then(function(swreg) {
+            reg = swreg;
+            return swreg.pushManager.getSubscription();
+          })
+          .then(function(sub) {
+            if(sub === null) {
+              var vapidPublicKey = 'BAeEP0Pi0FDXYrUHA8ipXPWS0di1ZyAORScTdPNandRanbRkUm6mY3q6481wQ9q89CnDsttVRTiFzFH6Zfr0oPE';
+              var ns = new NotificationService();
+              var convertedVapidPublicKey = ns.urlBase64ToUint8Array(vapidPublicKey);
+              console.log(convertedVapidPublicKey);
+              reg.pushManager.subscribe({
+                userVisibleOnly: true,
+                applicationServerKey: convertedVapidPublicKey
+              }).then(function(newSub) {
+                // var http: Http;
+                // var ns = new NotificationService(http);
+                //   ns.subscribeNewUser(newSub).subscribe(
+                //   (response) =>{
+                //     if(response.status === 200) {
+                //       console.log('new user added');
+                //     }
+                //   }
+                // )
+                fetch('http://localhost:3000/api/notification/nwsub', {
+                  method:'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                  },
+                  body: JSON.stringify(newSub)
+                })
+                .then(function() {
+                  console.log('New subscription');
+                });
+              });
+            } else {
+
+            }
+          }).then(function() {
+            new NotificationService().displayNotification();
+          })
+          .catch(function(err) {
+            console.log(err);
+          });
       }
     });
   }
 
 }
+
+/*
+
+Public Key:
+BH13dGmd74pMkXuijU5yRXbNjHMY0Sohb0k5KUdRFXcehyRCM0231WdwdlcQWOtm0A05K7EsuRaHEaXRdGalXLY
+
+Private Key:
+W-6QGSUIj06gCoYdqXI0Ka-f1LEfwbv803EI_k4FRMo
+*/
