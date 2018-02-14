@@ -90,12 +90,3 @@ export class NavBarComponent implements OnInit {
   }
 
 }
-
-/*
-
-Public Key:
-BH13dGmd74pMkXuijU5yRXbNjHMY0Sohb0k5KUdRFXcehyRCM0231WdwdlcQWOtm0A05K7EsuRaHEaXRdGalXLY
-
-Private Key:
-W-6QGSUIj06gCoYdqXI0Ka-f1LEfwbv803EI_k4FRMo
-*/

@@ -24,6 +24,21 @@
       notification.close();
     } else {
       console.log(action);
+      event.waitUntil(
+        clients.matchAll()
+          .then(function(clts) {
+            var client = clts.find(function(c) {
+               return c.visibilityState === 'visible';
+            });
+            if(client !== undefined) {
+              client.navigate(notification.data.url);
+              client.focus();
+            } else {
+              clients.openWindow(notification.data.url);
+            }
+            notification.close();
+          })
+      )
       notification.close();
     }
   });
@@ -34,7 +49,7 @@
 
   self.addEventListener('push', function(event) {
     console.log('push notification recieved', event);
-    var data = {title: 'Cart Push', content: 'This is cart push'};
+    var data = {title: 'Cart Push', content: 'This is cart push', openUrl: '/'};
     if(event.data) {
       data = JSON.parse(event.data.text());
     }
@@ -42,7 +57,10 @@
     var options = {
       body: data.content,
       icon: '/assets/icons/app-icon-48x48.png',
-      bagde:'/assets/icons/app-icon-48x48.png'
+      bagde:'/assets/icons/app-icon-48x48.png',
+      data: {
+        url: data.openUrl
+      }
     }
 
     event.waitUntil(

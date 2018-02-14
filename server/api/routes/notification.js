@@ -46,7 +46,12 @@ router.post('/nwnf', (req, res) => {
                         p256dh: subscriber.keys.p256dh
                     }
                 }
-                webpush.sendNotification(pushConfig, JSON.stringify({title: "New notf", content:"New notification added."}))
+                webpush.sendNotification(pushConfig, JSON.stringify(
+                    {
+                        title: "Shopping Cart", 
+                        content:req.body.text,
+                        openUrl: req.body.openUrl
+                    }))
                     .catch(function(err) {
                         console.log(err);
                 });
