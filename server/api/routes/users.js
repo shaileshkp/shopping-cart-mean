@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
 var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
 var bcrypt = require('bcryptjs');
+var jwt = require('jsonwebtoken');
+require('../config/passport')(passport);
 
 const { MongoClient, ObjectID } = require('mongodb');
 const keys = require('./../config/keys');
@@ -46,62 +47,34 @@ router.post('/register', (req, res) => {
     });
 });
 
-passport.use(new LocalStrategy(
-    function(username, password, done) {
-        MongoClient.connect(url, (err, db) => {
-            if(err) {
-                throw err
-            } 
-            db.collection('Users').find({ email: username}).toArray().then((user) => {
-                if(user.length > 0) {
-                    bcrypt.compare(password, user[0].password).then(function(res) {
-                        if(res){
-                            return done(null, user[0]);
-                        } else {
-                            return done(null, false, {message: 'Invalid password'});
-                        }
-                    });
-                } else {
-                    return done(null, false, {message: 'Unknown User'});
-                }
-            }, (err) => {
-                throw err;
-            });
-            db.close();
+router.post('/login', function(req, res) {
+    var username = req.body.username
+    var password = req.body.password
+
+    MongoClient.connect(url, (err, db) => {
+        if(err) {
+            throw err
+        } 
+        db.collection('Users').find({ email: username}).toArray().then((user) => {
+            if(user.length > 0) {
+                bcrypt.compare(password, user[0].password).then(function(result) {
+                    if(result){
+                        // if user is found and password is right create a token
+                        var token = jwt.sign(user[0], keys.secret);
+                        // return the information including token as JSON
+                        res.json({success: true, token: 'JWT ' + token});
+                    } else {
+                    res.status(400).send({success: false, msg: 'Authentication failed. Password not matched.'});
+                    }
+                });
+            } else {
+                res.status(401).send({success: false, msg: 'Authentication failed. User not found.'});
+            }
+        }, (err) => {
+            throw err;
         });
-    })
-);
-
-passport.serializeUser(function(user, done) {
-    console.log('Serialize user:'+JSON.stringify(user));
-    
-    done(null, user);
-});
-  
-passport.deserializeUser(function(user, done) {
-    console.log("Deserialize called....",user);
-    done(null, user);
-});
-
-router.post('/login',
-    passport.authenticate('local', 
-    {
-        successRedirect:'/api/users/success', 
-        failureRedirect:'/api/users/failure',
-        failureFlash: true,
-        session: true
-    }),
-    function(req, res) {
-        res.redirect('/api/users/success');
-    }
-);
-
-router.get('/success', function(req, res) {
-    res.status(200).send('Successfull login');
-});
-
-router.get('/failure', function(req, res) {
-    res.send(401);
+        db.close();
+    });
 });
 
 module.exports = router;

@@ -7,6 +7,7 @@ const cookieSession = require('cookie-session');
 const morgan = require('morgan');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+var cors = require('cors')
 
 const keys = require('./api/config/keys');
 const productRoutes = require('./api/routes/products');
@@ -21,16 +22,18 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(__dirname+'/public'));
-app.use(cookieParser());
 app.use(flash());
 
 //CORSE
-app.use((req,res,next) => {
-    res.header("Access-Control-Allow-Origin",'*');
-    res.header("Access-Control-Allow-Headers","Origin, X-Requested-With, Content-Type, Accept,X-Request-With, Authorization");
-    req.header('Access-Control-Allow-Methods',"GET, POST, PUT, DELETE");
-    next();
-});
+
+app.use(cors())
+
+// app.use((req,res,next) => {
+//     res.header("Access-Control-Allow-Origin",'*');
+//     res.header("Access-Control-Allow-Headers","Origin, X-Requested-With, Content-Type, Accept,X-Request-With, Authorization");
+//     req.header('Access-Control-Allow-Methods',"GET, POST, PUT, DELETE");
+//     next();
+// });
 
 // // Express Session
 // app.use(session({
@@ -38,18 +41,6 @@ app.use((req,res,next) => {
 //     saveUninitialized: true,
 //     resave: true
 // }));
-
-//cookie-session
-app.use(
-    cookieSession({
-      maxAge: 30 * 24 * 60 * 60 * 1000,
-      keys: [keys.cookieKey]
-    })
-);
-
-// Passport init
-app.use(passport.initialize());
-app.use(passport.session());
 
 //Routes
 app.use('/api/products', productRoutes);
